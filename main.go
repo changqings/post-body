@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	serverAddr = ":30001"
+	serverAddr = ":8080"
 )
 
 func main() {
@@ -17,6 +17,11 @@ func main() {
 	app := gin.Default()
 
 	app.POST("/", func(c *gin.Context) {
+		headers := c.Request.Header
+		fmt.Println("post headers:")
+		for k, v := range headers {
+			fmt.Printf("%s: %s\n", k, v)
+		}
 
 		b, err := io.ReadAll(c.Request.Body)
 		if err != nil {
