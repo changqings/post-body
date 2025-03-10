@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"log/slog"
 
 	"github.com/gin-gonic/gin"
 )
@@ -34,6 +35,7 @@ func main() {
 		c.JSON(200, gin.H{"status": "ok"})
 	})
 
+	slog.Info("start web", "server addr", serverAddr)
 	err := app.Run(serverAddr)
 	if err != nil {
 		panic(err)
